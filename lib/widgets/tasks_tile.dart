@@ -9,12 +9,6 @@ class _TaskTileState extends State<TaskTile> {
   @override
   bool isChecked = true;
 
-  void checkboxState(bool isCheck) {
-    setState(() {
-      isChecked = isCheck;
-    });
-  }
-
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
@@ -24,7 +18,11 @@ class _TaskTileState extends State<TaskTile> {
       ),
       trailing: TaskCheckbox(
         checkboxState: isChecked,
-        toggleCheckboxState: checkboxState,
+        toggleCheckboxState: (bool isCheck) {
+          setState(() {
+            isChecked = isCheck;
+          });
+        },
       ),
     );
   }
